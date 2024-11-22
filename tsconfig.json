@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "CommonJS",
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "skipLibCheck": true,
+        "moduleResolution": "Node",
+        "declaration": true,
+        "strictNullChecks": true,
+        "sourceMap": true,
+        "noEmitOnError": true,
+        "useDefineForClassFields": true,
+        "baseUrl": "./src",
+        "paths": {
+            "@config/*": ["config/*"],
+            "@controllers/*": ["controllers/*"],
+            "@db/*": ["db/*"],
+            "@models/*": ["models/*"],
+            "@repository/*": ["repository/*"],
+            "@routes/*": ["routes/*"],
+            "@services/*": ["services/*"],
+            "@utils/*": ["utils/*"]
+        }
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist/**/*"]
+}
