@@ -1,6 +1,7 @@
 import app from './app';
 import { closeDBConnection, connectToDB } from './db';
 import { ServerConfig } from '@config/server-config';
+import logger from '@config/logger-config';
 
 let server: ReturnType<typeof app.listen>;
 
@@ -8,24 +9,24 @@ async function startServer(): Promise<void> {
     try {
         await connectToDB();
         server = app.listen(ServerConfig.PORT, () => {
-            console.log(
+            logger.info(
                 `Server started listening on http://localhost:${ServerConfig.PORT}`,
             );
         });
     } catch (error) {
-        console.log(`Error starting the server: ${error}`);
+        logger.error(`Error starting the server: ${error}`);
         process.exit(1);
     }
 }
 
 async function shutdownServer(): Promise<void> {
-    console.log('Shutting down server...');
+    logger.info('Shutting down server...');
     server?.close((err) => {
         if (err) {
-            console.log(`Error while shutting down server: ${err}`);
+            logger.error(`Error while shutting down server: ${err}`);
             process.exit(1);
         }
-        console.log('HTTP server closed gracefully');
+        logger.info('HTTP server closed gracefully');
     });
 
     await closeDBConnection();
@@ -33,22 +34,22 @@ async function shutdownServer(): Promise<void> {
 }
 
 process.on('SIGINT', async () => {
-    console.log('Received SIGINT Signal');
+    logger.info('Received SIGINT Signal');
     await shutdownServer();
 });
 
 process.on('SIGTERM', async () => {
-    console.log('Received SIGTERM Signal');
+    logger.info('Received SIGTERM Signal');
     await shutdownServer();
 });
 
 process.on('uncaughtException', (error) => {
-    console.log(`Uncaught Exception: ${error}`);
+    logger.info(`Uncaught Exception: ${error}`);
     process.exit(1);
 });
 
 process.on('unhandledRejection', (error) => {
-    console.log(`Unhandled Rejection: ${error}`);
+    logger.info(`Unhandled Rejection: ${error}`);
     process.exit(1);
 });
 
