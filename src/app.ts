@@ -5,6 +5,7 @@ import { rateLimit, RateLimitRequestHandler } from 'express-rate-limit';
 import { StatusCodes } from 'http-status-codes';
 import { requestLogger } from '@config/logger-config';
 import globalErrorHandler from '@utils/error-handler';
+import apiRoutes from '@routes/index';
 
 const app: Application = express();
 
@@ -35,6 +36,8 @@ app.get('/status', (req: Request, res: Response) => {
         timestamp: new Date(Date.now()).toUTCString(),
     });
 });
+
+app.use('/api', apiRoutes);
 
 app.use(globalErrorHandler);
 

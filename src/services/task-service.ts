@@ -10,12 +10,22 @@ export async function createTaskService(
     taskData: Partial<ITask>,
 ): Promise<ITask> {
     try {
+        if (taskData.status === 'completed') {
+            logger.error("Task with completed status can't be created");
+            throw new AppError(
+                'Task cannot be created with a completed status',
+                StatusCodes.BAD_REQUEST,
+            );
+        }
         const task = await taskRepository.create(taskData);
         logger.info(
             `New Task created with id: ${task._id} successfully created.`,
         );
         return task;
     } catch (error) {
+        if (error instanceof AppError) {
+            throw error;
+        }
         logger.error('Something went wrong while creating a new task');
         throw new AppError(
             'An unexpected error occured while creating a new task',

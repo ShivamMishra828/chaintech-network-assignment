@@ -10,9 +10,9 @@ export async function createTaskController(
 ) {
     try {
         const task = await createTaskService(req.body);
-        return res
-            .status(StatusCodes.CREATED)
-            .json(new SuccessResponse(task, 'Task created successfully'));
+        res.status(StatusCodes.CREATED).json(
+            new SuccessResponse(task, 'Task created successfully'),
+        );
     } catch (error) {
         next(error);
     }
