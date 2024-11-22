@@ -4,6 +4,7 @@ import { ServerConfig } from '@config/server-config';
 import { rateLimit, RateLimitRequestHandler } from 'express-rate-limit';
 import { StatusCodes } from 'http-status-codes';
 import { requestLogger } from '@config/logger-config';
+import globalErrorHandler from '@utils/error-handler';
 
 const app: Application = express();
 
@@ -34,5 +35,7 @@ app.get('/status', (req: Request, res: Response) => {
         timestamp: new Date(Date.now()).toUTCString(),
     });
 });
+
+app.use(globalErrorHandler);
 
 export default app;
