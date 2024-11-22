@@ -10,6 +10,10 @@ class CrudRepository<T extends Document> {
     async create(data: Partial<T>): Promise<T> {
         return this.model.create(data);
     }
+
+    async findAll(): Promise<T[]> {
+        return this.model.find().exec();
+    }
 }
 
 export default CrudRepository;

@@ -33,3 +33,17 @@ export async function createTaskService(
         );
     }
 }
+
+export async function fetchAllTasksService(): Promise<ITask[]> {
+    try {
+        const tasks = await taskRepository.findAll();
+        logger.info('All tasks fetched successfully');
+        return tasks;
+    } catch (error) {
+        logger.error('Something went wrong while fetching all tasks');
+        throw new AppError(
+            'An unexpected error occured while fetching all tasks',
+            StatusCodes.INTERNAL_SERVER_ERROR,
+        );
+    }
+}
