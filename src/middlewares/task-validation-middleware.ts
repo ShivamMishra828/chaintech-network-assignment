@@ -2,6 +2,7 @@ import { createTaskSchema } from '@schemas/index';
 import { ErrorResponse } from '@utils/responses';
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
+import { Types } from 'mongoose';
 
 export async function validateIncomingRequest(
     req: Request,
@@ -17,6 +18,23 @@ export async function validateIncomingRequest(
 
         res.status(StatusCodes.BAD_REQUEST).json(
             new ErrorResponse(errors, 'Validation Error'),
+        );
+    }
+    next();
+}
+
+export function validateTaskId(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) {
+    const { taskId } = req.params;
+    if (!Types.ObjectId.isValid(taskId)) {
+        res.status(StatusCodes.BAD_REQUEST).json(
+            new ErrorResponse(
+                [{ path: 'taskId', message: 'Invalid task id' }],
+                'Validation Error',
+            ),
         );
     }
     next();

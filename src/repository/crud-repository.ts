@@ -12,7 +12,11 @@ class CrudRepository<T extends Document> {
     }
 
     async findAll(): Promise<T[]> {
-        return this.model.find().exec();
+        return this.model.find();
+    }
+
+    async findById(id: string): Promise<T | null> {
+        return this.model.findById(id);
     }
 }
 

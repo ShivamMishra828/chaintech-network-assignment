@@ -47,3 +47,24 @@ export async function fetchAllTasksService(): Promise<ITask[]> {
         );
     }
 }
+
+export async function fetchTaskByIdService(
+    taskId: string,
+): Promise<ITask | null> {
+    try {
+        const task = await taskRepository.findById(taskId);
+        if (!task) {
+            throw new AppError('Task not found', StatusCodes.NOT_FOUND);
+        }
+        return task;
+    } catch (error) {
+        if (error instanceof AppError) {
+            throw error;
+        }
+        logger.error('Error fetching task by ID');
+        throw new AppError(
+            'An unexpected error occurred while fetching task byy id',
+            StatusCodes.INTERNAL_SERVER_ERROR,
+        );
+    }
+}
