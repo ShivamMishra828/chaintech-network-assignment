@@ -1,4 +1,4 @@
-import logger from '@config/logger-config';
+import { logger } from '@config/logger-config';
 import { ServerConfig } from '@config/server-config';
 import mongoose from 'mongoose';
 

@@ -2,6 +2,8 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import { ServerConfig } from '@config/server-config';
 import { rateLimit, RateLimitRequestHandler } from 'express-rate-limit';
+import { StatusCodes } from 'http-status-codes';
+import { requestLogger } from '@config/logger-config';
 
 const app: Application = express();
 
@@ -14,6 +16,7 @@ const limiter: RateLimitRequestHandler = rateLimit({
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(limiter);
+app.use(requestLogger);
 app.use(
     cors({
         origin: [ServerConfig.CORS_ORIGIN],
@@ -23,9 +26,12 @@ app.use(
 );
 
 app.get('/status', (req: Request, res: Response) => {
-    res.status(200).json({
+    res.status(StatusCodes.OK).json({
         success: true,
         message: 'Server is up and running smoothly!',
+        uptime: process.uptime(),
+        memoryUsage: process.memoryUsage(),
+        timestamp: new Date(Date.now()).toUTCString(),
     });
 });
 

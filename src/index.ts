@@ -1,7 +1,7 @@
 import app from './app';
 import { closeDBConnection, connectToDB } from './db';
 import { ServerConfig } from '@config/server-config';
-import logger from '@config/logger-config';
+import { logger } from '@config/logger-config';
 
 let server: ReturnType<typeof app.listen>;
 
