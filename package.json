@@ -30,6 +30,7 @@
         "express-rate-limit": "^7.4.1",
         "http-status-codes": "^2.3.0",
         "mongoose": "^8.8.2",
-        "winston": "^3.17.0"
+        "winston": "^3.17.0",
+        "zod": "^3.23.8"
     }
 }

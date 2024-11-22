@@ -23,6 +23,7 @@
             "@models/*": ["models/*"],
             "@repository/*": ["repository/*"],
             "@routes/*": ["routes/*"],
+            "@schemas/*": ["schemas/*"],
             "@services/*": ["services/*"],
             "@utils/*": ["utils/*"]
         }

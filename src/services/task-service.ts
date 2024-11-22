@@ -11,7 +11,9 @@ export async function createTaskService(
 ): Promise<ITask> {
     try {
         const task = await taskRepository.create(taskData);
-        logger.info(`New Task created with id: ${task._id}`);
+        logger.info(
+            `New Task created with id: ${task._id} successfully created.`,
+        );
         return task;
     } catch (error) {
         logger.error('Something went wrong while creating a new task');
