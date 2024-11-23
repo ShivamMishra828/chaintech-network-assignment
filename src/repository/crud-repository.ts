@@ -18,6 +18,10 @@ class CrudRepository<T extends Document> {
     async findById(id: string): Promise<T | null> {
         return this.model.findById(id);
     }
+
+    async update(id: string, updatedData: Partial<T>): Promise<T | null> {
+        return this.model.findByIdAndUpdate(id, updatedData, { new: true });
+    }
 }
 
 export default CrudRepository;

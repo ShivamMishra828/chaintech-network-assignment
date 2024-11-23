@@ -2,6 +2,7 @@ import {
     createTaskService,
     fetchAllTasksService,
     fetchTaskByIdService,
+    updateTaskDetailsService,
 } from '@services/task-service';
 import { SuccessResponse } from '@utils/responses';
 import { NextFunction, Request, Response } from 'express';
@@ -46,6 +47,27 @@ export async function fetchTaskByIdController(
         const task = await fetchTaskByIdService(req.params.taskId);
         res.status(StatusCodes.OK).json(
             new SuccessResponse(task, 'Task fetched successfully'),
+        );
+    } catch (error) {
+        next(error);
+    }
+}
+
+export async function updateTaskDetailsController(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) {
+    try {
+        const updatedTask = await updateTaskDetailsService(
+            req.params.taskId,
+            req.body,
+        );
+        res.status(StatusCodes.OK).json(
+            new SuccessResponse(
+                updatedTask,
+                'Task details updated successfully',
+            ),
         );
     } catch (error) {
         next(error);

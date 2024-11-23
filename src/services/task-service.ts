@@ -37,7 +37,7 @@ export async function createTaskService(
 export async function fetchAllTasksService(): Promise<ITask[]> {
     try {
         const tasks = await taskRepository.findAll();
-        logger.info('All tasks fetched successfully');
+        logger.info(`${tasks.length} tasks fetched successfully`);
         return tasks;
     } catch (error) {
         logger.error('Something went wrong while fetching all tasks');
@@ -63,7 +63,33 @@ export async function fetchTaskByIdService(
         }
         logger.error('Error fetching task by ID');
         throw new AppError(
-            'An unexpected error occurred while fetching task byy id',
+            'An unexpected error occurred while fetching task by id',
+            StatusCodes.INTERNAL_SERVER_ERROR,
+        );
+    }
+}
+
+export async function updateTaskDetailsService(
+    taskId: string,
+    updatedData: Partial<Pick<ITask, 'description' | 'category' | 'dueDate'>>,
+): Promise<ITask | null> {
+    try {
+        const task = await taskRepository.update(taskId, updatedData);
+        if (!task) {
+            logger.error(`Task with id: ${taskId} doesn't exists`);
+            throw new AppError('Task not found', StatusCodes.NOT_FOUND);
+        }
+
+        logger.info(`Task with id: ${task._id} successfully updated`);
+        return task;
+    } catch (error) {
+        if (error instanceof AppError) {
+            throw error;
+        }
+
+        logger.error(`Error updating task with id: ${taskId}`);
+        throw new AppError(
+            'An unexpected error occurred while updating the task',
             StatusCodes.INTERNAL_SERVER_ERROR,
         );
     }
