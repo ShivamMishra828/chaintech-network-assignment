@@ -22,6 +22,10 @@ class CrudRepository<T extends Document> {
     async update(id: string, updatedData: Partial<T>): Promise<T | null> {
         return this.model.findByIdAndUpdate(id, updatedData, { new: true });
     }
+
+    async delete(id: string): Promise<T | null> {
+        return this.model.findByIdAndDelete(id);
+    }
 }
 
 export default CrudRepository;

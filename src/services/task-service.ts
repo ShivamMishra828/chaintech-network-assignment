@@ -94,3 +94,23 @@ export async function updateTaskDetailsService(
         );
     }
 }
+
+export async function deleteTaskService(taskId: string): Promise<void> {
+    try {
+        const task = await taskRepository.delete(taskId);
+        if (!task) {
+            logger.error(`Task with id: ${taskId} doesn't exists`);
+            throw new AppError('Task not found', StatusCodes.NOT_FOUND);
+        }
+        logger.info(`Task with id: ${taskId} successfully deleted`);
+    } catch (error) {
+        if (error instanceof AppError) {
+            throw error;
+        }
+        logger.error(`Error deleting task with id: ${taskId}`);
+        throw new AppError(
+            'An unexpected error occurred while deleting the task',
+            StatusCodes.INTERNAL_SERVER_ERROR,
+        );
+    }
+}

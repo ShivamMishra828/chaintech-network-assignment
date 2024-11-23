@@ -1,5 +1,6 @@
 import {
     createTaskController,
+    deleteTaskController,
     fetchAllTasksController,
     fetchTaskByIdController,
     updateTaskDetailsController,
@@ -16,5 +17,6 @@ router.post('/', validateIncomingRequest, createTaskController);
 router.get('/', fetchAllTasksController);
 router.get('/:taskId', validateTaskId, fetchTaskByIdController);
 router.put('/:taskId', updateTaskDetailsController);
+router.delete('/:taskId', deleteTaskController);
 
 export default router;
