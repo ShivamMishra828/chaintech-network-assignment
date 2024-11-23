@@ -1,11 +1,11 @@
 import express, { Application, Request, Response } from 'express'; // Import necessary modules from express
 import cors from 'cors'; // Import CORS middleware for handling cross-origin requests
-import { ServerConfig } from '@config/server-config'; // Import server configuration settings
+import { ServerConfig } from './config/server-config'; // Import server configuration settings
 import { rateLimit, RateLimitRequestHandler } from 'express-rate-limit'; // Import rate limiting middleware
 import { StatusCodes } from 'http-status-codes'; // Import HTTP status codes
-import { requestLogger } from '@config/logger-config'; // Import request logging middleware
-import globalErrorHandler from '@utils/error-handler'; // Import global error handling middleware
-import apiRoutes from '@routes/index'; // Import API routes
+import { requestLogger } from './config/logger-config'; // Import request logging middleware
+import globalErrorHandler from './utils/error-handler'; // Import global error handling middleware
+import apiRoutes from './routes/index'; // Import API routes
 
 // Create an instance of an Express application
 const app: Application = express();

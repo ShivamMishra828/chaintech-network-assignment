@@ -1,4 +1,4 @@
-import { logger } from '@config/logger-config'; // Import the logger for logging error messages
+import { logger } from '../config/logger-config'; // Import the logger for logging error messages
 import { NextFunction, Request, Response } from 'express'; // Import types from express
 import AppError from './app-error'; // Import the custom AppError class
 import { ErrorResponse } from './responses'; // Import the ErrorResponse utility for consistent error responses

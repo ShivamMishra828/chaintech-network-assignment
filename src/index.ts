@@ -1,7 +1,7 @@
 import app from './app'; // Import the Express application
 import { closeDBConnection, connectToDB } from './db'; // Import database connection functions
-import { ServerConfig } from '@config/server-config'; // Import server configuration settings
-import { logger } from '@config/logger-config'; // Import logger for logging messages
+import { ServerConfig } from './config/server-config'; // Import server configuration settings
+import { logger } from './config/logger-config'; // Import logger for logging messages
 
 let server: ReturnType<typeof app.listen>; // Variable to hold the server instance
 

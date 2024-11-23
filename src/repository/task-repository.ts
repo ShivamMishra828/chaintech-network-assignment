@@ -1,4 +1,4 @@
-import { Task, ITask } from '@models/task-model';
+import { Task, ITask } from '../models/task-model';
 import CrudRepository from './crud-repository';
 
 /**

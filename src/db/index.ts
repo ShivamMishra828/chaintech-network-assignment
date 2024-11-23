@@ -1,5 +1,5 @@
-import { logger } from '@config/logger-config';
-import { ServerConfig } from '@config/server-config';
+import { logger } from '../config/logger-config';
+import { ServerConfig } from '../config/server-config';
 import mongoose from 'mongoose';
 
 // Establish a connection to the MongoDB database

@@ -5,8 +5,8 @@ import {
     fetchTaskByIdService,
     updateTaskDetailsService,
     updateTaskStatusService,
-} from '@services/task-service';
-import { SuccessResponse } from '@utils/responses';
+} from '../services/task-service';
+import { SuccessResponse } from '../utils/responses';
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 

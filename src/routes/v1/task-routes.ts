@@ -5,13 +5,13 @@ import {
     fetchTaskByIdController,
     updateTaskDetailsController,
     updateTaskStatusController,
-} from '@controllers/task-controller';
+} from '../../controllers/task-controller';
 import {
     validateIncomingRequest,
     validateIncomingUpdateDetailsRequest,
     validateIncomingUpdateStatusRequest,
     validateTaskId,
-} from '@middlewares/task-validation-middleware';
+} from '../../middlewares/task-validation-middleware';
 import express, { Router } from 'express';
 
 // Create a new Router instance

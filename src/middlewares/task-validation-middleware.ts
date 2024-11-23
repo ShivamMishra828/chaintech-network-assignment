@@ -1,10 +1,10 @@
-import { logger } from '@config/logger-config';
+import { logger } from '../config/logger-config';
 import {
     createTaskSchema,
     updateTaskDetailsSchema,
     updateTaskStatusSchema,
-} from '@schemas/index';
-import { ErrorResponse } from '@utils/responses';
+} from '../schemas/index';
+import { ErrorResponse } from '../utils/responses';
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { Types } from 'mongoose';

@@ -15,19 +15,7 @@
         "sourceMap": true,
         "noEmitOnError": true,
         "useDefineForClassFields": true,
-        "baseUrl": "./src",
-        "paths": {
-            "@config/*": ["config/*"],
-            "@controllers/*": ["controllers/*"],
-            "@db/*": ["db/*"],
-            "@middlewares/*": ["middlewares/*"],
-            "@models/*": ["models/*"],
-            "@repository/*": ["repository/*"],
-            "@routes/*": ["routes/*"],
-            "@schemas/*": ["schemas/*"],
-            "@services/*": ["services/*"],
-            "@utils/*": ["utils/*"]
-        }
+        "baseUrl": "./src"
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "dist/**/*"]

@@ -1,7 +1,7 @@
-import { logger } from '@config/logger-config'; // Import logger for logging messages
-import { ITask } from '@models/task-model'; // Import the ITask interface
-import TaskRepository from '@repository/task-repository'; // Import the Task repository
-import AppError from '@utils/app-error'; // Import custom error handling class
+import { logger } from '../config/logger-config'; // Import logger for logging messages
+import { ITask } from '../models/task-model'; // Import the ITask interface
+import TaskRepository from '../repository/task-repository'; // Import the Task repository
+import AppError from '../utils/app-error'; // Import custom error handling class
 import { StatusCodes } from 'http-status-codes'; // Import HTTP status codes
 
 const taskRepository = new TaskRepository(); // Instantiate the Task repository
