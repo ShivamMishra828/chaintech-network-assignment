@@ -51,12 +51,14 @@ The **Chaintech Network Assignment** is a Node.js application built using TypeSc
 src/
 ├── config/             # Configuration files (logger, server, etc.)
 ├── controllers/        # Route handler functions
-├── db/                 # Database connection and utilities
+├── db/                 # Database connection
 ├── middlewares/        # Middleware for validation, logging, etc.
 ├── models/             # Mongoose schemas and models
+├── repository/         # Data access layer
 ├── routes/             # API route definitions
+├── schemas/            # Validation Schemas
+├── services/           # Business Logic Layer
 ├── utils/              # Utility functions and helpers
-├── postman/            # Postman collection for API documentation
 ├── app.ts              # Main Express app setup
 └── index.ts            # Entry point of the application
 ```
