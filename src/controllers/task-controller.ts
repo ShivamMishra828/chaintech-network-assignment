@@ -113,7 +113,7 @@ export async function deleteTaskController(
         await deleteTaskService(taskId);
 
         // Send a success response indicating the task was deleted
-        res.status(StatusCodes.OK).json(
+        res.status(StatusCodes.NO_CONTENT).json(
             new SuccessResponse(null, 'Task deleted successfully'),
         );
     } catch (error) {
