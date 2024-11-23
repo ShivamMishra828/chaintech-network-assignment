@@ -114,3 +114,51 @@ export async function deleteTaskService(taskId: string): Promise<void> {
         );
     }
 }
+
+export async function updateTaskStatusService(
+    taskId: string,
+    status: string,
+): Promise<ITask> {
+    try {
+        const task = await taskRepository.findById(taskId);
+        if (!task) {
+            logger.error(`Task with id: ${taskId} doesn't exists`);
+            throw new AppError('Task not found', StatusCodes.NOT_FOUND);
+        }
+
+        if (task.status === 'completed' && status === 'completed') {
+            logger.error(
+                `Task with id: ${taskId} is already marked as completed`,
+            );
+            throw new AppError(
+                'Task is already completed',
+                StatusCodes.BAD_REQUEST,
+            );
+        }
+
+        if (task.status === 'pending' && status === 'pending') {
+            logger.error(
+                `Task with id: ${taskId} is already marked as pending`,
+            );
+            throw new AppError(
+                'Task is already pending',
+                StatusCodes.BAD_REQUEST,
+            );
+        }
+
+        task.status = status;
+        await task.save();
+
+        logger.info(`Task status with id: ${taskId} updated successfully`);
+        return task;
+    } catch (error) {
+        if (error instanceof AppError) {
+            throw error;
+        }
+        logger.error(`Error updating task status with id: ${taskId}`);
+        throw new AppError(
+            'An unexpected error occurred while updating the task status',
+            StatusCodes.INTERNAL_SERVER_ERROR,
+        );
+    }
+}

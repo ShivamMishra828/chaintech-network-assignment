@@ -7,3 +7,18 @@ export const createTaskSchema = z.object({
     status: z.enum(['pending', 'completed']).default('pending'),
     category: z.enum(['personal', 'work', 'idea']).default('personal'),
 });
+
+export const updateTaskDetailsSchema = z.object({
+    description: z
+        .string()
+        .min(1, { message: 'Description is required' })
+        .optional(),
+    dueDate: z.date().optional(),
+    category: z.enum(['personal', 'work', 'ideo']).optional(),
+});
+
+export const updateTaskStatusSchema = z.object({
+    status: z.enum(['pending', 'completed'], {
+        message: 'Invalid status value',
+    }),
+});

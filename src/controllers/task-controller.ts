@@ -4,6 +4,7 @@ import {
     fetchAllTasksService,
     fetchTaskByIdService,
     updateTaskDetailsService,
+    updateTaskStatusService,
 } from '@services/task-service';
 import { SuccessResponse } from '@utils/responses';
 import { NextFunction, Request, Response } from 'express';
@@ -84,6 +85,27 @@ export async function deleteTaskController(
         await deleteTaskService(req.params.taskId);
         res.status(StatusCodes.OK).json(
             new SuccessResponse(null, 'Task deleted successfully'),
+        );
+    } catch (error) {
+        next(error);
+    }
+}
+
+export async function updateTaskStatusController(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+) {
+    try {
+        const updatedTask = await updateTaskStatusService(
+            req.params.taskId,
+            req.body.status,
+        );
+        res.status(StatusCodes.OK).json(
+            new SuccessResponse(
+                updatedTask,
+                'Task status updated successfully',
+            ),
         );
     } catch (error) {
         next(error);
