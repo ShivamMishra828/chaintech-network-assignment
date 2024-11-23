@@ -13,8 +13,8 @@ export const updateTaskDetailsSchema = z.object({
         .string()
         .min(1, { message: 'Description is required' })
         .optional(),
-    dueDate: z.date().optional(),
-    category: z.enum(['personal', 'work', 'ideo']).optional(),
+    dueDate: z.date().optional().nullable(),
+    category: z.enum(['personal', 'work', 'idea']).optional(),
 });
 
 export const updateTaskStatusSchema = z.object({

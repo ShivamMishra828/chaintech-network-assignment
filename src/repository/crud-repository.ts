@@ -24,7 +24,7 @@ class CrudRepository<T extends Document> {
     }
 
     async delete(id: string): Promise<T | null> {
-        return this.model.findByIdAndDelete(id);
+        return this.model.findByIdAndDelete({ _id: id });
     }
 }
 

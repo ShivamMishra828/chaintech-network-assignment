@@ -23,6 +23,7 @@ export async function validateIncomingRequest(
         res.status(StatusCodes.BAD_REQUEST).json(
             new ErrorResponse(errors, 'Validation Error'),
         );
+        return;
     }
     next();
 }
@@ -40,6 +41,7 @@ export function validateTaskId(
                 'Validation Error',
             ),
         );
+        return;
     }
     next();
 }
@@ -59,6 +61,7 @@ export async function validateIncomingUpdateDetailsRequest(
         res.status(StatusCodes.BAD_REQUEST).json(
             new ErrorResponse(errors, 'Validation Error'),
         );
+        return;
     }
     next();
 }
@@ -78,6 +81,7 @@ export async function validateIncomingUpdateStatusRequest(
         res.status(StatusCodes.BAD_REQUEST).json(
             new ErrorResponse(errors, 'Validation Error'),
         );
+        return;
     }
     next();
 }
